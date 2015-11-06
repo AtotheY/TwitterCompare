@@ -30,8 +30,23 @@
        		$response2 = $twitter->setGetfield($getfield2)->buildOauth($url2, $requestMethod)->performRequest();	
 		$store1 = json_decode($response1, true);
 		$store2 = json_decode($response2, true);
-		var_dump($store1);
-		var_dump($response1);
+		//var_dump($store1);
+		//var_dump($response1);
+		$count = 0;
+		$ids1 = $store1['ids'];
+		$ids2 = $store2['ids'];
+		foreach ($ids1 as $data1) {
+			foreach ($ids2 as $data2)
+			{
+				if ($data1 == $data2)
+				{
+					$count++;
+					//echo $data1. "is equal to" . $data2;
+					//echo "**";
+				}
+			}
+		}
+		echo "You have ".$count." friends in common!";
 	?>
 </body>
 </html>
