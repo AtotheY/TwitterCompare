@@ -33,12 +33,18 @@
 		$count = 0;
 		$ids1 = $store1['ids'];
 		$ids2 = $store2['ids'];
+		$url3 = 'https://api.twitter.com/1.1/users/show.json';
+
 		foreach ($ids1 as $data1) {
 			foreach ($ids2 as $data2)
 			{
 				if ($data1 == $data2)
 				{
 					$count++;
+					$getfield3 = "?user_id=".$data1;
+					$response3 = $twitter->setGetfield($getfield3)->buildOauth($url3, $requestMethod)->performRequest();	
+					$store3 = json_decode($response3,true);
+					echo "Both users follow " . $store3['screen_id']."!";
 					//echo $data1. "is equal to" . $data2;
 					//echo "**";
 				}
